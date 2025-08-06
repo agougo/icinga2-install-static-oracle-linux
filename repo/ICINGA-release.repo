@@ -1,8 +1,8 @@
 [icinga-stable-release]
 name=ICINGA (stable release for rhel)
 baseurl=https://packages.icinga.com/subscription/rhel/$releasever/release/
-username=antonios-gkougkoulis-txp
-password=16653e86ba3fa0d6
+username=[USERNAME]
+password=[PASSWORD]
 enabled=1
 gpgcheck=1
 gpgkey=https://packages.icinga.com/icinga.key

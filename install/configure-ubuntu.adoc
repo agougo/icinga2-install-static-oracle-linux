@@ -1,0 +1,73 @@
+= Configure IcingaWeb2
+
+In this section the initial configuration happens.
+
+By running the following command you should already have your token:
+----
+icingacli setup token show
+----
+
+Enter it and press Next:
+
+image::images/Icinga2_1.PNG[]
+
+Enable the Modules that you need and press Next:
+
+image::images/Icinga2_2.PNG[]
+
+Leave the Authentication as is and press Next:
+
+image::images/Icinga2_3.PNG[]
+
+Fill in the Database Resource that will store your usernames and passwords. This is a good place to roll back when your LDAPs fails. Validate using:
+
+Username: postgres +
+Password: postgres
+
+and click Next:
+
+image::images/Icinga2_4.PNG[]
+
+Leave the authentication backend as is and click Next:
+
+image::images/Icinga2_5.PNG[]
+
+Create your Admin account. For the sake of simplicity:
+
+Username: admin +
+Password: admin
+
+and click Next:
+
+image::images/Icinga2_6.PNG[]
+
+Leave the Application Configuration as is and click Next:
+
+image::images/Icinga2_7.PNG[]
+
+Now it is time to configure Icingaweb2:
+
+image::images/Icinga2_8.PNG[]
+
+Create and configure your IcingaDB Resource. For the sake of simplicity:
+
+Username: icingadb +
+Password: icingadb
+
+image::images/Icinga2_9.PNG[]
+
+Configure Redis. No username and password are needed.
+
+image::images/Icinga2_10.PNG[]
+
+Configure the API connection, Validate and click Next:
+
+image::images/Icinga2_11.PNG[]
+
+And Finish:
+
+image::images/Icinga2_12.PNG[]
+
+Now Login using admin/admin:
+
+image::images/Icinga2_13.PNG[]
