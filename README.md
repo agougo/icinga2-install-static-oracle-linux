@@ -29,6 +29,8 @@ The purpose of this repo is to automate the creation of a full blown Icinga2 Mas
 # chmod +x *.sh
 ```
 
+> **<ins>Note</ins>:** Add your username and password to file repo/ICINGA-release.repo before the script copies it to /etc/yum.repos.d/
+
 / run the following scripts in that order
 ```
 # configure-oracle-linux.sh
