@@ -36,7 +36,7 @@ dnf -y install https://dl.fedoraproject.org/pub/epel/epel-release-latest-9.noarc
 cp ~/icinga2prodinstallation/repo/ICINGA-release.repo /etc/yum.repos.d/ICINGA-release.repo
 # ---
 
-# Enable php v8.2 for Icingaweb2
+# Enable php v8.3 for Icingaweb2
 dnf module list php
 dnf module enable php:8.3 -y
 
