@@ -31,7 +31,7 @@ cd ..
 ICINGAWEB_MODULEPATH="/usr/share/icingaweb2/modules"
 REPO_URL="https://github.com/icinga/icingaweb2-module-director"
 TARGET_DIR="${ICINGAWEB_MODULEPATH}/director"
-MODULE_VERSION="1.11.5"
+MODULE_VERSION="1.12.1"
 
 git clone "${REPO_URL}" "${TARGET_DIR}" --branch v${MODULE_VERSION}
 icingacli module enable director
@@ -70,7 +70,7 @@ systemctl enable icinga-director.service
 icingacli director migration run --verbose
 
 # Finish Message
-read -r -s -p $'\nMake sure the director is properly configured in Icingaweb2...\n\n'
+read -r -s -p $'\nMake sure the director is properly configured in Icingaweb2... \n\nNow press Enter ... \n\n'
 
 else
     echo "This script only runs on Oracle Linux 9.x Exiting."

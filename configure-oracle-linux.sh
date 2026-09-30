@@ -51,9 +51,9 @@ dnf -y install nagios-plugins-all
 # Update the SELinux policy
 dnf -y install icinga2-selinux
 
-# Enable PostgreSQL 16
+# Enable PostgreSQL 18
 dnf module list postgresql
-dnf module enable postgresql:16 -y
+dnf module enable postgresql:18 -y
 
 # Install PostgreSQL, initialize it, enable it on boot and start the database
 dnf -y install postgresql-server postgresql
