@@ -5,22 +5,12 @@ trap 'echo "Error on line $LINENO: $BASH_COMMAND" >&2' ERR
 
 cd ~
 
-# Get InfluxDB 1.8.10
-wget https://dl.influxdata.com/influxdb/releases/influxdb-1.8.10.x86_64.rpm
-dnf localinstall influxdb-1.8.10.x86_64.rpm -y
-
+# Add InfluxDB
+wget https://dl.influxdata.com/influxdb/releases/v1.13.1/influxdb_1.13.1-1_amd64.deb
+sudo dpkg -i influxdb_1.13.1-1_amd64.deb
 systemctl restart influxdb
 
-cd icinga2prodinstallation
-
-# Install Latest Grafana
-cp grafana/grafana.repo /etc/yum.repos.d/grafana.repo
-dnf install -y grafana
-
-systemctl daemon-reload
-systemctl start grafana-server
-systemctl enable grafana-server.service
-
+# Enable InfluxDB feature
 icinga2 feature enable influxdb
 systemctl restart icinga2
 
@@ -85,34 +75,7 @@ icingacli module enable perfdatagraphs
 icingacli module enable perfdatagraphsinfluxdbv1
 
 # TODO
-#ICINGAWEB_MODULEPATH="/usr/share/icingaweb2/modules"
-#REPO_URL="https://github.com/NETWAYS/icingaweb2-module-grafana"
-#TARGET_DIR="${ICINGAWEB_MODULEPATH}/grafana"
-#git clone "${REPO_URL}" "${TARGET_DIR}"
-
-#icingacli module enable grafana
-
-rm -f /etc/grafana/grafana.ini
-cp grafana/grafana.ini /etc/grafana/grafana.ini
-cp /etc/pki/tls/certs/httpd.crt /etc/grafana/httpd.crt
-cp /etc/pki/tls/private/httpd.key /etc/grafana/httpd.key
-
-cd /etc/grafana
-chown grafana.grafana grafana.ini httpd.crt httpd.key
-systemctl restart grafana-server.service
-
-# Install a custom image renderer version
-#grafana-cli --pluginUrl /var/lib/grafana/plugins/grafana-image-renderer-3.11.0.linux-amd64.zip plugins install grafana-image-renderer
-
-grafana-cli plugins install grafana-image-renderer
-dnf install -y libX11-xcb libXcomposite libXdamage libXtst nss libXScrnSaver alsa-lib atk-devel at-spi2-atk-devel pango-devel gtk3-devel
-systemctl restart grafana-server.service
-
-sleep 5
-
-curl -k --user admin:admin 'https://localhost:3000/api/datasources' -X POST -H 'Content-Type: application/json;charset=UTF-8' --data-binary '{"name":"InfluxDB","type":"influxdb","url":"http://localhost:8086","access":"proxy","isDefault":true,"database":"icinga","user":"icinga","password":"icinga"}'
-
-sleep 5
+# Install Promethus as a back end for perfdata
 
 cd ~
 cd icinga2prodinstallation
